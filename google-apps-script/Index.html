@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        input[type="file"] {
+            margin: 20px 0;
+            display: block;
+        }
+
+        button {
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #357ae8;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calendar Importer</h2>
+        <p>Select your .ics file to upload events directly to your Google Calendar.</p>
+
+        <input type="file" id="fileInput" accept=".ics">
+        <button id="uploadBtn" onclick="handleUpload()">Import Calendar</button>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function handleUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const statusDiv = document.getElementById('status');
+            const btn = document.getElementById('uploadBtn');
+
+            if (fileInput.files.length === 0) {
+                statusDiv.innerText = "Please select a file first.";
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            statusDiv.innerText = "Reading file & sending to Google...";
+            btn.disabled = true;
+
+            reader.onload = function (e) {
+                const content = e.target.result;
+
+                // Send the text content to the Code.gs backend
+                google.script.run
+                    .withSuccessHandler(function (response) {
+                        statusDiv.innerText = response;
+                        statusDiv.style.color = "green";
+                        btn.disabled = false;
+                    })
+                    .withFailureHandler(function (error) {
+                        statusDiv.innerText = "Failed: " + error.message;
+                        statusDiv.style.color = "red";
+                        btn.disabled = false;
+                    })
+                    .processICS(content);
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+
+</html>
