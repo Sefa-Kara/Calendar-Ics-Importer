@@ -1,7 +1,3 @@
-Here is the complete, ready-to-publish `README.md` file. It is formatted specifically for GitHub, complete with clear instructions, markdown styling, and the critical security warnings. 
-
-You can copy everything inside the code block below and paste it directly into your `README.md` file.
-
 ***
 
 ```markdown
