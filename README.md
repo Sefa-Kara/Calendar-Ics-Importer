@@ -4,6 +4,8 @@ A powerful, dual-purpose tool to import extended `.ics` (iCalendar) files direct
 
 Unlike standard calendar imports, this tool parses **custom metadata** inside your ICS files, allowing you to automatically assign Google Calendar colors, tag events as tasks, and mark items as shiftable/flexible.
 
+> **🚀 Upgrade Your Workflow:** Want to turn these imported tasks into a dynamic, auto-shifting schedule? Check out the companion app: [Google Calendar Dynamic Task Scheduler](https://github.com/Sefa-Kara/Calendar-Task-Manager)
+
 ## 🌟 Features
 
 - **Standard ICS Parsing:** Reads `SUMMARY`, `DTSTART`, `DTEND`, `DESCRIPTION`, `LOCATION`, and `VALARM` (reminders).
@@ -104,6 +106,16 @@ DESCRIPTION:This is an event reminder
 END:VALARM
 END:VEVENT
 ```
+
+---
+
+## 🚀 Next Step: Dynamic Task Management
+
+This importer does the heavy lifting of injecting hidden metadata (`X-IS-TASK` and `X-IS-SHIFTABLE`) into your calendar. To actually *use* this data to auto-manage your schedule, hook up the companion web app:
+
+👉 **[Calendar-Task-Manager](https://github.com/Sefa-Kara/Calendar-Task-Manager)**
+
+The Task Manager acts as a live dashboard for the events you just imported. If a task runs late or finishes early, it uses a custom shifting engine to push or pull your future tasks automatically, preserving your gaps and respecting your working hours.
 
 ---
 
