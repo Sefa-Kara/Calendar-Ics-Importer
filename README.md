@@ -66,7 +66,6 @@ The code in the `python-cli` folder is a standalone script for local environment
 3. Enable the **Google Calendar API** in the API Library.
 4. Go to **Credentials**, create an **OAuth client ID** (Application type: "Desktop app").
 5. Download the JSON file, rename it to `credentials.json`, and place it inside the `python-cli` folder.
-   > **⚠️ SECURITY WARNING:** Never commit your `credentials.json` or `token.json` files to GitHub. Ensure your `.gitignore` is configured correctly.
 
 ### Usage
 
